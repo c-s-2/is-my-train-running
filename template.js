@@ -11,7 +11,7 @@ const Template = ({ content, title }) => {
       </head>
 
       <body>
-        <main class="${content.status === 'LATE' ? 'late': ''}">
+        <main class="${content.status !== 'ON TIME' ? 'late': ''}">
           <h1>
             The ${content.aimedDepartureTime} ${content.operator} service to
             ${content.destination} is...
@@ -22,6 +22,16 @@ const Template = ({ content, title }) => {
           <p>Expected departure time: ${content.expectedDepartureTime}</p>
 
           <p>Platform: ${content.platform}</p>
+
+          <small>
+            source:
+            <a
+              href="http://transportapi.com/"
+              rel="nofollow noreferrer"
+            >
+              http://transportapi.com/
+            </a>
+          </small>
         </main>
       </body>
     </html>

@@ -38,6 +38,16 @@ p {
   margin: 0;
 }
 
+small {
+  color: #FFFFFF;
+  bottom: 1rem;
+  position: absolute;
+}
+
+a {
+  color: #FFFFFF;
+}
+
 @media (min-width: 767px) {
   h1 {
     font-size: 3em;

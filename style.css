@@ -1,0 +1,53 @@
+body {
+  font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+  font-size: 62.5%;
+  margin: 0;
+}
+
+main {
+  align-items: center;
+  background-color: #03A6A6;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.late {
+  background-color: #D94854;
+}
+
+h1, h2 {
+  margin: 0 0 1rem 0;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 4em;
+}
+
+p {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+@media (min-width: 767px) {
+  h1 {
+    font-size: 3em;
+  }
+
+  h2 {
+    font-size: 6em;
+  }
+
+  p {
+    font-size: 2em;
+  }
+}

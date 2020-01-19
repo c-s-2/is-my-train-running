@@ -27,15 +27,21 @@ h1, h2 {
 h1 {
   font-size: 2em;
   font-weight: 400;
+  animation: 3s fadein forwards 1;
+  opacity: 0;
 }
 
 h2 {
+  animation: 3s fadein forwards 0.5s 1;
   font-size: 4em;
+  opacity: 0;
 }
 
 p {
+  animation: 3s fadein forwards 1s 1;
   font-size: 1.5em;
   margin: 0;
+  opacity: 0;
 }
 
 small {
@@ -59,5 +65,15 @@ a {
 
   p {
     font-size: 2em;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }

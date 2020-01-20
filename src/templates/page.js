@@ -1,4 +1,4 @@
-const Template = ({ content, title }) => {
+const Page = ({ content, title }) => {
   return `
     <!DOCTYPE html>
     <html>
@@ -38,4 +38,4 @@ const Template = ({ content, title }) => {
   `;
 };
 
-module.exports = Template;
+module.exports = Page;

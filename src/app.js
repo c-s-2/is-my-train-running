@@ -17,15 +17,43 @@ const getDepartures = () => {
   .then(response => response);
 };
 
-const error = fs.createWriteStream(`${publicPath}/error.html`);
-error.once('open', function(fd) {
-  error.end(Error());
-  console.log('public/error.html generated');
+const index = fs.createWriteStream(`${publicPath}/index.html`);
+index.once('open', async () => {
+  const data = await getDepartures();
+  const morningTrain = data.departures.all.find(train => train.train_uid === amTrainId);
+  let html;
+
+  if (typeof morningTrain === 'undefined') {
+    html = Error();
+  } else {
+    const {
+      aimed_departure_time: aimedDepartureTime,
+      destination_name: destination,
+      expected_departure_time: expectedDepartureTime,
+      operator_name: operator,
+      platform,
+      status,
+    } = morningTrain;
+    html = Page({
+      content: {
+        aimedDepartureTime,
+        destination,
+        expectedDepartureTime,
+        operator,
+        platform,
+        status,
+      },
+      title: status,
+    });
+  }
+
+  index.end(html);
+  console.log('index.html generated');
 });
 
 fs.copyFile('src/style.css', `${publicPath}/style.css`, (err) => {
   if (err) throw err;
-  console.log('public/style.css generated');
+  console.log('style.css generated');
 });
 
 const server = http.createServer(async (req, res) => {
@@ -44,44 +72,6 @@ const server = http.createServer(async (req, res) => {
       res.end(content);
     }
   });
-
-  // if (request === './style.css') {
-  //   const fileStream = fs.createReadStream(`${publicPath}/style.css`);
-  //   fileStream.pipe(res);
-  //   return;
-  // } else {
-  //   const fileStream = fs.createReadStream(`${publicPath}/error.html`);
-  //   fileStream.pipe(res);
-  //   return;
-  // }
-  // const path = req.url;
-  // const data = await getDepartures();
-  // const morningTrain = data.departures.all.find(train => train.train_uid === amTrainId);
-  // let html;
-  //
-  // if (typeof morningTrain === 'undefined') {
-  //   html = Error();
-  // } else {
-  //   const {
-  //     aimed_departure_time: aimedDepartureTime,
-  //     destination_name: destination,
-  //     expected_departure_time: expectedDepartureTime,
-  //     operator_name: operator,
-  //     platform,
-  //     status,
-  //   } = morningTrain;
-  //   html = Template({
-  //     content: {
-  //       aimedDepartureTime,
-  //       destination,
-  //       expectedDepartureTime,
-  //       operator,
-  //       platform,
-  //       status,
-  //     },
-  //     title: status,
-  //   });
-  // }
 });
 
 server.listen(port, hostname, () => {

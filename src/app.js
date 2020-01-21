@@ -6,7 +6,7 @@ const http = require('http');
 const Error = require('./templates/error.js');
 const Page = require('./templates/page.js');
 
-const amTrainId = 'C72916';
+const amTrainId = 'C72955';
 const hostname = '127.0.0.1';
 const port = 3000;
 const publicPath = './public'
@@ -17,8 +17,8 @@ const getDepartures = () => {
   .then(response => response);
 };
 
-const index = fs.createWriteStream(`${publicPath}/index.html`);
-index.once('open', async () => {
+const getIndex = async () => {
+  const index = fs.createWriteStream(`${publicPath}/index.html`);
   const data = await getDepartures();
   const morningTrain = data.departures.all.find(train => train.train_uid === amTrainId);
   let html;
@@ -47,33 +47,35 @@ index.once('open', async () => {
     });
   }
 
-  index.end(html);
   console.log('index.html generated');
-});
+  index.write(html);
+};
+
+getIndex();
 
 fs.copyFile('src/style.css', `${publicPath}/style.css`, (err) => {
   if (err) throw err;
   console.log('style.css generated');
 });
 
-const server = http.createServer(async (req, res) => {
-  const request = req.url;
-  const filePath = request === '/' ? `${publicPath}/index.html` : `${publicPath}/${request}`;
-
-  fs.readFile(filePath, function(error, content) {
-    if (error) {
-      res.writeHead(500);
-      res.end();
-    } else if (request === '/style.css') {
-      res.writeHead(200, { 'Content-Type': 'text/css' });
-      res.end(content, 'utf-8');
-    } else {
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.end(content);
-    }
-  });
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+// const server = http.createServer(async (req, res) => {
+//   const request = req.url;
+//   const filePath = request === '/' ? `${publicPath}/index.html` : `${publicPath}/${request}`;
+//
+//   fs.readFile(filePath, function(error, content) {
+//     if (error) {
+//       res.writeHead(500);
+//       res.end();
+//     } else if (request === '/style.css') {
+//       res.writeHead(200, { 'Content-Type': 'text/css' });
+//       res.end(content, 'utf-8');
+//     } else {
+//       res.writeHead(200, { 'Content-Type': 'text/html' });
+//       res.end(content);
+//     }
+//   });
+// });
+//
+// server.listen(port, hostname, () => {
+//   console.log(`Server running at http://${hostname}:${port}/`);
+// });

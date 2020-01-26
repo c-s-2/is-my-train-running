@@ -16,8 +16,12 @@ main {
   text-align: center;
 }
 
-.late {
+.cancelled {
   background-color: #D94854;
+}
+
+.late {
+  background-color: #F25C05;
 }
 
 h1, h2 {

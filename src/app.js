@@ -1,14 +1,11 @@
 const dotenv = require('dotenv').config();
 const fetch = require('node-fetch');
 const fs = require('fs');
-const http = require('http');
 
 const Error = require('./templates/error.js');
 const Page = require('./templates/page.js');
 
 const amTrainId = 'C72955';
-const hostname = '127.0.0.1';
-const port = 3000;
 const publicPath = './public'
 
 const getDepartures = () => {
@@ -17,7 +14,7 @@ const getDepartures = () => {
   .then(response => response);
 };
 
-const getIndex = async () => {
+const generateIndex = async () => {
   const index = fs.createWriteStream(`${publicPath}/index.html`);
   const data = await getDepartures();
   const morningTrain = data.departures.all.find(train => train.train_uid === amTrainId);
@@ -34,48 +31,50 @@ const getIndex = async () => {
       platform,
       status,
     } = morningTrain;
-    html = Page({
-      content: {
-        aimedDepartureTime,
-        destination,
-        expectedDepartureTime,
-        operator,
-        platform,
-        status,
-      },
-      title: status,
-    });
+    const styleModifier = status.toLowerCase().replace(' ', '_');
+
+    switch(status) {
+      case 'CANCELLED':
+        html = Page({
+          content: `
+            <h1>
+              The ${aimedDepartureTime} ${operator} service to
+              ${destination} is...
+            </h1>
+            <h2>CANCELLED</h2>
+          `,
+          status,
+          styleModifier,
+        });
+        break;
+      default:
+        html = Page({
+          content: `
+            <h1>
+              The ${aimedDepartureTime} ${operator} service to
+              ${destination} is...
+            </h1>
+            <h2>${status}</h2>
+            <p>Expected departure time: ${expectedDepartureTime}</p>
+            <p>Platform: ${platform}</p>
+          `,
+          status,
+          styleModifier,
+        });
+        break;
+    }
   }
 
   console.log('index.html generated');
   index.write(html);
 };
 
-getIndex();
+const generateStylesheet = () => {
+  fs.copyFile('src/style.css', `${publicPath}/style.css`, (err) => {
+    if (err) throw err;
+    console.log('style.css generated');
+  });
+};
 
-fs.copyFile('src/style.css', `${publicPath}/style.css`, (err) => {
-  if (err) throw err;
-  console.log('style.css generated');
-});
-
-// const server = http.createServer(async (req, res) => {
-//   const request = req.url;
-//   const filePath = request === '/' ? `${publicPath}/index.html` : `${publicPath}/${request}`;
-//
-//   fs.readFile(filePath, function(error, content) {
-//     if (error) {
-//       res.writeHead(500);
-//       res.end();
-//     } else if (request === '/style.css') {
-//       res.writeHead(200, { 'Content-Type': 'text/css' });
-//       res.end(content, 'utf-8');
-//     } else {
-//       res.writeHead(200, { 'Content-Type': 'text/html' });
-//       res.end(content);
-//     }
-//   });
-// });
-//
-// server.listen(port, hostname, () => {
-//   console.log(`Server running at http://${hostname}:${port}/`);
-// });
+generateIndex();
+generateStylesheet();

@@ -5,7 +5,7 @@ const fs = require('fs');
 const Error = require('./templates/error.js');
 const Page = require('./templates/page.js');
 
-const amTrainId = 'C72955';
+const amTrainId = 'C72916';
 const publicPath = './public'
 
 const getDepartures = () => {
@@ -21,8 +21,10 @@ const generateIndex = async () => {
   let html;
 
   if (typeof morningTrain === 'undefined') {
+    console.log(`no train found for ${amTrainId}`);
     html = Error();
   } else {
+    console.log(`train found for ${amTrainId}`);
     const {
       aimed_departure_time: aimedDepartureTime,
       destination_name: destination,

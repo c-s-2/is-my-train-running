@@ -15,7 +15,7 @@ Builds are set to trigger at 7:25, 7:30 & 7:35.
 ## Build instructions
 
 - Clone repo
-- Install dependencies with `NPM/Yarn install`
+- Install dependencies with `npm/yarn install`
 - Run `node src/app.js` to generate the site in the public directory
 
 ## Screenshots

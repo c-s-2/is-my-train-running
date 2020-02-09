@@ -1,0 +1,22 @@
+{
+  "short_name": "Train",
+  "name": "Is my train running?",
+  "description": "Check if my train is running",
+  "icons": [
+    {
+      "src": "/assets/train-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/assets/train-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#03A6A6"
+}

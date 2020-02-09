@@ -9,7 +9,8 @@ const Footer = ({ title }) => {
       <meta name="theme-color" content="#03A6A6"/>
       <title>${title}</title>
       <link rel="stylesheet" type="text/css" href="./style.css">
-      <link rel="manifest" href="/manifest.json">
+      <link rel="manifest" href="./manifest.json">
+      <script src="./service_worker.js" type="text/javascript"></script>
     </head>
   `;
 };

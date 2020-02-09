@@ -1,4 +1,4 @@
-# is-my-train-running
+# [is-my-train-running](https://check-my-train.netlify.com/)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/85cc0a12-9806-4bc6-a343-9008b3febbd9/deploy-status)](https://app.netlify.com/sites/check-my-train/deploys)
 
@@ -10,7 +10,13 @@ cancelled.
 Uses [netlify](https://www.netlify.com/) for building and hosting the site and
 [zapier](https://zapier.com) to trigger builds at specified times.
 
-Builds are currently set to trigger at 7:25, 7:30 & 7:35.
+Builds are set to trigger at 7:25, 7:30 & 7:35.
+
+## Build instructions
+
+- Clone repo
+- Install dependencies with `NPM/Yarn install`
+- Run `node src/app.js` to generate the site in the public directory
 
 ## Screenshots
 

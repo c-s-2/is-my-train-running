@@ -11,6 +11,11 @@ const Footer = () => {
           http://transportapi.com/
         </a>
       </small>
+      <small>
+        <button class="add-to-home">
+          Add to home screen
+        </button>
+      </small>
     </footer>
   `;
 };

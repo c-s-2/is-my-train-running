@@ -22,10 +22,15 @@ main {
 }
 
 footer {
+  align-items: center;
   bottom: 1rem;
   display: flex;
   flex-direction: column;
   position: absolute;
+}
+
+footer > *:not(:last-child) {
+  margin-bottom: 1em;
 }
 
 .cancelled {
@@ -62,6 +67,13 @@ p {
 
 a {
   color: #000000;
+}
+
+button {
+  background: none;
+  border: 1px solid #000000;
+  cursor: pointer;
+  display: none;
 }
 
 small {

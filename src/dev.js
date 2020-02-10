@@ -38,7 +38,6 @@ const parseRequestInfo = (url) => {
 
 const server = http.createServer((req, res) => {
   const { fileEncoding, filePath, fileType } = parseRequestInfo(req.url);
-  console.log(parseRequestInfo(req.url));
 
   if (req.url === '/') {
     res.statusCode = 200;

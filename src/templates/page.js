@@ -1,16 +1,14 @@
 const Head = require('./head');
 const Footer = require('./footer');
 
-const Page = ({ content, status, styleModifier }) => {
+const Page = ({ content, status }) => {
   return `
     <!DOCTYPE html>
     <html lang="en-GB">
       ${Head({ title: status })}
       <body>
-        <main class="${styleModifier}">
-          ${content}
-          ${Footer()}
-        </main>
+        <main>${content}</main>
+        ${Footer()}
       </body>
     </html>
   `;

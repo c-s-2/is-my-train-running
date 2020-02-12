@@ -8,11 +8,9 @@ const Error = () => {
       ${Head({ title: 'Error' })}
       <body>
         <main>
-          <h1>
-            Train not found
-          </h1>
-          ${Footer()}
+          <h1>Train not found</h1>
         </main>
+        ${Footer()}
       </body>
     </html>
   `;

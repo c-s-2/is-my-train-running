@@ -1,7 +1,7 @@
 {
-  "short_name": "Train",
-  "name": "Is my train running?",
-  "description": "Check if my train is running",
+  "short_name": "Train Checker",
+  "name": "Train Checker",
+  "description": "Train Checker",
   "icons": [
     {
       "src": "/assets/train-192.png",
@@ -15,8 +15,8 @@
     }
   ],
   "start_url": "/",
-  "background_color": "#FFFFFF",
+  "background_color": "#005B96",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#03A6A6"
+  "theme_color": "#005B96"
 }

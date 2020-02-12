@@ -33,8 +33,6 @@ const generateIndex = async () => {
       platform,
       status,
     } = morningTrain;
-    const styleModifier = status.toLowerCase().replace(' ', '_');
-
     switch(status) {
       case 'CANCELLED':
         html = Page({
@@ -46,7 +44,6 @@ const generateIndex = async () => {
             <h2>CANCELLED</h2>
           `,
           status,
-          styleModifier,
         });
         break;
       default:
@@ -61,7 +58,6 @@ const generateIndex = async () => {
             <p>Platform: ${platform}</p>
           `,
           status,
-          styleModifier,
         });
         break;
     }

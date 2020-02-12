@@ -10,6 +10,7 @@ const Footer = ({ title }) => {
       <title>${title}</title>
       <link rel="stylesheet" type="text/css" href="./style.css">
       <link rel="manifest" href="./manifest.json">
+      <link rel="apple-touch-icon" href="/assets/train-57.png"/>
       <script src="./service_worker.js" type="text/javascript"></script>
     </head>
   `;

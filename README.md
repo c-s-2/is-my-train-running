@@ -27,6 +27,10 @@ Builds are set to trigger at 7:25, 7:30 & 7:35.
 
 <img src="./screenshots/on_time.png" width="200" />
 
+### Late
+
+<img src="./screenshots/late.png" width="200" />
+
 ### Cancelled
 
 <img src="./screenshots/cancelled.png" width="200" />
